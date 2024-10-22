@@ -113,18 +113,20 @@ declare(strict_types=1);
                         $this->SendDebug('HAUSTÜRE', json_encode($room['function']['actuator-ref']['@attributes']['ref']), 0);
                     }
 
-                    $this->SendDebug('function length', print_r(sizeof($room['function']), true), 0);
-                    foreach ($room['function'] as $function) {
-                        $this->SendDebug('function', print_r(array_keys($function), true), 0);
-                        if (array_key_exists('actuator-ref', $function)) {
-                            $this->SendDebug($room['@attributes']['name'], $function['actuator-ref']['@attributes']['ref'], 0);
-                            $parents[$function['actuator-ref']['@attributes']['ref']] = $roomID;
-                        } else {
-                            // I don't know why
-                            if (isset($room['function']['actuator-ref'])) {
-                                $parents[$room['function']['actuator-ref']['@attributes']['ref']] = $roomID;
+                    if (array_key_exists('function', $room)) {
+                        $this->SendDebug('function length', print_r(sizeof($room['function']), true), 0);
+                        foreach ($room['function'] as $function) {
+                            $this->SendDebug('function', print_r(array_keys($function), true), 0);
+                            if (array_key_exists('actuator-ref', $function)) {
+                                $this->SendDebug($room['@attributes']['name'], $function['actuator-ref']['@attributes']['ref'], 0);
+                                $parents[$function['actuator-ref']['@attributes']['ref']] = $roomID;
+                            } else {
+                                // I don't know why
+                                if (isset($room['function']['actuator-ref'])) {
+                                    $parents[$room['function']['actuator-ref']['@attributes']['ref']] = $roomID;
+                                }
+                                $this->SendDebug($room['@attributes']['name'] . 'ELSE', print_r($function, true), 0);
                             }
-                            $this->SendDebug($room['@attributes']['name'] . 'ELSE', print_r($function, true), 0);
                         }
                     }
                 }
