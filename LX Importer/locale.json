@@ -2,7 +2,8 @@
     "translations": {
         "de": {
             "LUXORliving Konfigurator": "LUXORliving Configurator",
-            "LX Project": "LX Projekt"
+            "LX Project": "LX Projekt",
+            "Devices": "Geräte"
         }
     }
 }

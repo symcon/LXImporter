@@ -5,32 +5,33 @@ declare(strict_types=1);
     {
         public const ROLE_MAPPINGS = [
             'OnOff' => [
+                'Aliases' => ['SchaltenOnOff'],
                 'Type' => 1,
                 'Dimension' => 1,
                 'Tag' => 'lighting',
                 'SubTag' => '',
-                'ReturnRole' => 'StatusOnOff',
+                'ReturnRole' => ['StatusOnOff', 'status@OnOff'],
             ],
             'Dimmen%' => [
                 'Type' => 5,
                 'Dimension' => 1,
                 'Tag' => 'lighting',
                 'SubTag' => '',
-                'ReturnRole' => 'Status%',
+                'ReturnRole' => ['Status%'],
             ],
             'Höhe%' => [
                 'Type' => 5,
                 'Dimension' => 1,
                 'Tag' => 'shading',
                 'SubTag' => '',
-                'ReturnRole' => 'StatusHöhe%',
+                'ReturnRole' => ['StatusHöhe%'],
             ],
             'Lamelle%' => [
                 'Type' => 5,
                 'Dimension' => 1,
                 'Tag' => 'shading',
                 'SubTag' => 'lamella',
-                'ReturnRole' => 'StatusLamelle%',
+                'ReturnRole' => ['StatusLamelle%'],
             ],
         ];
 
@@ -142,16 +143,18 @@ declare(strict_types=1);
                             ];
                             if (array_key_exists('datapoint', $actuator)) {
                                 $groupAddresses = [];
-                                $getGa = function ($datapoints, $role) {
+                                $getGa = function ($datapoints, $roles) {
                                     foreach ($datapoints as $datapoint) {
-                                        if ($datapoint['@attributes']['role'] == $role) {
+                                        if (in_array($datapoint['@attributes']['role'], $roles)) {
                                             return  $this->splitGroupAddress($datapoint['@attributes']['address']);
                                         }
                                     }
                                     return [];
                                 };
                                 foreach (self::ROLE_MAPPINGS as $role => $roleMap) {
-                                    $mainAddresses = $getGa($actuator['datapoint'], $role);
+                                    $aliases = array_key_exists('Aliases', $roleMap) ? $roleMap['Aliases'] : [];
+                                    $aliases[] = $role;
+                                    $mainAddresses = $getGa($actuator['datapoint'], $aliases);
                                     $groupAddressConfig = [];
                                     if ($mainAddresses) {
                                         $device['ga'] = implode('/', $mainAddresses);

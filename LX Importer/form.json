@@ -13,7 +13,7 @@
             "type": "Configurator",
             "name": "Configurator",
             "discoveryInterval": 300,
-            "caption": "Luxor Living",
+            "caption": "Devices",
             "delete": false,
             "columns": [
                 {
