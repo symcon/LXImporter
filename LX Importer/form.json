@@ -3,7 +3,7 @@
         {
             "type": "SelectFile",
             "name": "ImportFile",
-            "caption": "Template",
+            "caption": "LX Project",
             "extensions": ".lxp",
             "onChange": "LXI_UIImport($id, $ImportFile);"
         }

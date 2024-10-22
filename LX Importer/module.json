@@ -3,7 +3,9 @@
     "name": "LX Importer",
     "type": 4,
     "vendor": "",
-    "aliases": [],
+    "aliases": [
+        "LUXORliving Konfigurator"
+    ],
     "parentRequirements": [],
     "childRequirements": [],
     "implemented": [],
