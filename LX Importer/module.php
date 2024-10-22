@@ -10,28 +10,28 @@ declare(strict_types=1);
                 'Dimension' => 1,
                 'Tag' => 'lighting',
                 'SubTag' => '',
-                'ReturnRole' => ['StatusOnOff', 'status@OnOff'],
+                'ReturnRoles' => ['StatusOnOff', 'status@OnOff'],
             ],
             'Dimmen%' => [
                 'Type' => 5,
                 'Dimension' => 1,
                 'Tag' => 'lighting',
                 'SubTag' => '',
-                'ReturnRole' => ['Status%'],
+                'ReturnRoles' => ['Status%'],
             ],
             'Höhe%' => [
                 'Type' => 5,
                 'Dimension' => 1,
                 'Tag' => 'shading',
                 'SubTag' => '',
-                'ReturnRole' => ['StatusHöhe%'],
+                'ReturnRoles' => ['StatusHöhe%'],
             ],
             'Lamelle%' => [
                 'Type' => 5,
                 'Dimension' => 1,
                 'Tag' => 'shading',
                 'SubTag' => 'lamella',
-                'ReturnRole' => ['StatusLamelle%'],
+                'ReturnRoles' => ['StatusLamelle%'],
             ],
         ];
 
@@ -170,8 +170,8 @@ declare(strict_types=1);
                                             'CapabilityTransmit' => false,
                                             'EmulateStatus' => true,
                                         ];
-                                        if (array_key_exists('ReturnRole', $roleMap)) {
-                                            $returnAddresses = $getGa($actuator['datapoint'], $roleMap['ReturnRole']);
+                                        if (array_key_exists('ReturnRoles', $roleMap)) {
+                                            $returnAddresses = $getGa($actuator['datapoint'], $roleMap['ReturnRoles']);
                                             if ($returnAddresses) {
                                                 $device['ga'] .= ', ' . implode('/', $returnAddresses);
 
@@ -183,7 +183,7 @@ declare(strict_types=1);
                                             }
                                         }
                                         foreach ($roleMap as $key => $value) {
-                                            if ($key != 'ReturnRole') {
+                                            if ($key != 'ReturnRoles') {
                                                 $groupAddressConfig[$key] = $value;
                                             }
                                         }
