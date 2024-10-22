@@ -1,0 +1,38 @@
+{
+    "elements": [
+        {
+            "type": "SelectFile",
+            "name": "ImportFile",
+            "caption": "Template",
+            "extensions": ".lxp",
+            "onChange": "LXI_UIImport($id, $ImportFile);"
+        }
+    ],
+    "actions": [
+        {
+            "type": "Configurator",
+            "name": "Configurator",
+            "discoveryInterval": 300,
+            "caption": "Luxor Living",
+            "delete": false,
+            "columns": [
+                {
+                    "label": "GA",
+                    "name": "ga",
+                    "width": "200px"
+                },
+                {
+                    "label": "Name",
+                    "name": "name",
+                    "width": "auto"
+                }
+            ],
+            "sort": {
+                "column": "name",
+                "direction": "ascending"
+            },
+            "values": []
+        }
+    ],
+    "status": []
+}

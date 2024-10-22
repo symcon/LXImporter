@@ -1,0 +1,12 @@
+{
+    "id": "{F68028C3-BC9A-278B-3DD7-F72D23DAE3B2}",
+    "name": "LX Importer",
+    "type": 4,
+    "vendor": "",
+    "aliases": [],
+    "parentRequirements": [],
+    "childRequirements": [],
+    "implemented": [],
+    "prefix": "LXI",
+    "url": "https://symcon.de"
+}
